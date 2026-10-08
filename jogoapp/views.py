@@ -14,3 +14,7 @@ def index(request):
             form = JogoForm()
     context = {'form':form ,'jogos':jogos}
     return render(request, 'jogo/index.html',context)
+
+def teste(request):
+
+    return render(request,'jogo/teste.html')

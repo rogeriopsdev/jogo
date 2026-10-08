@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from jogoapp.views import index
+from jogoapp.views import index, teste
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', index, name='index'),
+    path('teste/', teste, name='teste'),
 ]
