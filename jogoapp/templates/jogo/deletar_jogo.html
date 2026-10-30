@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deletar Jogo</title>
+</head>
+<body>
+<h1>Deletar Jogo!🎮</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h1>Deseja excluir {{ form.nome_jogo }} ?</h1>
+    <input type="submit" value="Delete">
+</form>
+</body>
+</html>

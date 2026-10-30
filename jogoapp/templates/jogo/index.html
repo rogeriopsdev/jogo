@@ -77,6 +77,7 @@
                 <label for="">Fase:</label>{{ form.id_fase }}
                 <label for="">Personagem :</label>{{ form.id_personagem }}
                 <label for="">Usuário :</label>{{ form.id_usuario }}
+                <label for="">Foto :</label>{{ form.foto_jogo }}
             </div>
     </div>
     <input type="submit" value="Salvar" class="btn btn-warning">
@@ -86,6 +87,7 @@
 
         {% for jogo in jogos %}
             <tr>
+                <td><img src="{{jogo.foto_url}}" alt=""></td>
                 <td>{{ jogo.id_jogo }}</td>
                 <td>{{ jogo.nome_jogo }}</td>
                 <td>{{ jogo.id_criador }}</td>
@@ -95,6 +97,8 @@
                 <td>{{ jogo.id_fase }}</td>
                 <td>{{ jogo.id_personagem }}</td>
                 <td>{{ jogo.id_usuario }}</td>
+            <td><a href="{% url 'editar_index' jogo.id_jogo %}">Editar</a></td>
+            <td><a href="{% url 'deletar_jogo' jogo.id_jogo %}">Deletar</a></td>
             </tr>
         {% endfor %}
     </table>

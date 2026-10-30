@@ -117,10 +117,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
+
+#no settings
 STATIC_URL = 'static/'
+MEDIA_URL = '/img/'
 STATICFILES_DIRS =[
-    os.path.join(BASE_DIR, 'static'),
+ os.path.join(BASE_DIR, 'static'),
 ]
+MEDIA_ROOT = os.path.join(BASE_DIR, 'jogoapp/static/assets/img')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

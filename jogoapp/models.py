@@ -1,4 +1,6 @@
 from django.db import models
+import PIL
+from PIL import Image
 
 # Create your models here.
 class Servidor(models.Model):
@@ -66,7 +68,24 @@ class Jogo(models.Model):
     id_fase = models.ForeignKey(Fase,models.DO_NOTHING, db_column="id_fase",blank=True ,null=True )
     id_personagem = models.ForeignKey(Personagem,models.DO_NOTHING, db_column="id_personagem",blank=True ,null=True )
     id_usuario = models.ForeignKey(Usuario,models.DO_NOTHING, db_column="id_usuario",blank=True ,null=True )
+    foto_jogo=models.ImageField(blank=True, null=False)
 
+    # no models
+    def save(self):
+        super().save()
+
+        im = Image.open(self.foto_jogo.path)
+        novo_tamanho = (40, 40)
+        im.thumbnail(novo_tamanho)
+        im.save(self.foto_jogo.path)
+
+    def foto_url(self):
+        if self.foto_jogo and hasattr(self.foto_jogo, 'url'):
+            return self.foto_jogo.url
+
+        else:
+            return self.nome_jogo
+    
     def __str__(self):
         return self.nome_jogo
     
