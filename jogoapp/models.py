@@ -6,6 +6,22 @@ from PIL import Image
 class Servidor(models.Model):
     id_servidor = models.AutoField(primary_key=True)
     nome_servidor =models.CharField(max_length=200, null=False)
+    foto_servidor =models.ImageField(blank=True, null=False)
+
+    def save(self):
+        super().save()
+
+        im = Image.open(self.foto_servidor.path)
+        novo_tamanho = (40, 40)
+        im.thumbnail(novo_tamanho)
+        im.save(self.foto_servidor.path)
+
+    def foto_url(self):
+        if self.foto_servidor and hasattr(self.foto_servidor, 'url'):
+            return self.foto_servidor.url
+
+        else:
+            return self.nome_servidor
     
     def __str__(self):
         return self.nome_servidor

@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
-from jogoapp.views import index, teste,editar_index,deletar_jogo
+from jogoapp.views import index, teste,editar_index,deletar_jogo, servidor, deletar_servidor, editar_servidor
 from django.views.static import serve
 from django.conf import settings
 from django.conf.urls.static import static
@@ -27,6 +27,10 @@ urlpatterns = [
     path('teste/', teste, name='teste'),
     path('editar_index/<int:id>', editar_index, name='editar_index'),
     path('deletar_jogo/<int:id>', deletar_jogo, name='deletar_jogo'),
+    # urls servidor
+    path('servidor/', servidor, name='servidor'),
+    path('editar_servidor/<int:id>', editar_servidor, name='editar_servidor'),
+    path('deletar_servidor/<int:id>', deletar_servidor, name='deletar_servidor'),
 #na urls
     re_path(r'^img/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
 ]

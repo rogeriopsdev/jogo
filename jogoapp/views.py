@@ -46,3 +46,43 @@ def deletar_jogo(request, id):
             jogo.delete()
             return redirect('index')
         return render(request, 'jogo/deletar_jogo.html', {'jogo':jogo, 'form':form})
+# Aqui será o servidor
+
+def servidor(request):
+    servidores = Servidor.objects.all()
+    form = ServidorForm()
+    if request.method == "POST":
+        form = ServidorForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+
+        return redirect('servidor')
+    context = {
+        'form':form ,
+        'servidores':servidores
+    }
+    return render(request, 'jogo/servidor.html',context)
+
+def editar_servidor(request, id):
+    servidor =get_object_or_404(Servidor, pk=id)
+    form = ServidorForm(instance=servidor)
+    if(request.method =="POST"):
+        form =ServidorForm(request.POST, request.FILES, instance=servidor)
+        if form.is_valid():
+            form.save()
+            return redirect('servidor')
+        else:
+            return render(request,'jogo/editar_servidor.html', {'servidor':servidor, 'form':form})
+
+
+    else:
+        return render(request, 'jogo/editar_servidor.html', {'servidor': servidor, 'form': form})
+
+
+def deletar_servidor(request, id):
+        servidor = get_object_or_404(Servidor, pk= id)
+        form = ServidorForm(instance=servidor)
+        if (request.method == "POST"):
+            servidor.delete()
+            return redirect('servidor')
+        return render(request, 'jogo/deletar_servidor.html', {'servidor':servidor, 'form':form})
